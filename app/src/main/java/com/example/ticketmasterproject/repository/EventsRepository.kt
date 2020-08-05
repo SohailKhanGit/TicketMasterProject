@@ -17,12 +17,12 @@ class EventsRepository(private val database:EventsDatabase){
     suspend fun refreshEvents(){
         withContext(Dispatchers.IO){
             Timber.d("Refresh events database called")
-            val events = EventByteNetwork.eventBytes.getEventObj(Constants.API_KEY).await()
+            val events = EventByteNetwork.eventBytes.getEventObj().await()
             database.eventsDao.insertAll(events.asDatabaseModel())
         }
     }
 
-    val results: LiveData<List<Events>> = Transformations.map(database.eventsDao.getEvents()){
+    val events: LiveData<List<Events>> = Transformations.map(database.eventsDao.getEvents()){
         it.asDomainModel()
     }
 

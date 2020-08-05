@@ -4,22 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ticketmasterproject.R
-import com.example.ticketmasterproject.database.DatabaseEvents
 import com.example.ticketmasterproject.databinding.RowEventsBinding
 import com.example.ticketmasterproject.domain.Events
-import kotlinx.android.synthetic.main.row_events.view.*
 
-class EventsAdapter(private val clickListener: EventsListener):RecyclerView.Adapter<EventsAdapter.EventsViewHolder>(){
+//private val clickListener: EventsListener
+class EventsAdapter():RecyclerView.Adapter<EventsAdapter.EventsViewHolder>(){
 
-    var results: List<Events> = emptyList()
+    var events: List<Events> = emptyList()
     set(value) {
         field = value
         notifyDataSetChanged()
     }
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventsViewHolder {
@@ -32,13 +29,13 @@ class EventsAdapter(private val clickListener: EventsListener):RecyclerView.Adap
         return EventsViewHolder(withDataBinding)
     }
 
-    override fun getItemCount() = results.size
+    override fun getItemCount() = events.size
 
     override fun onBindViewHolder(holder: EventsViewHolder, position: Int) {
         holder.viewDataBinding.also {
-            it.results = results[position]
+            it.events = events[position]
 
-            it.resultsCallback = clickListener
+//            it.resultsCallback = clickListener
         }
     }
 
@@ -53,6 +50,6 @@ class EventsAdapter(private val clickListener: EventsListener):RecyclerView.Adap
     }
 }
 
-class EventsListener(val clickListener:(id :String) -> Unit){
-    fun onClick(event: DatabaseEvents) = clickListener(event.id)
-}
+//class EventsListener(val clickListener:(id :String) -> Unit){
+//    fun onClick(event: DatabaseEvents) = clickListener(event.id)
+//}

@@ -16,7 +16,8 @@ interface EventsDao{
     fun insertAll(events: List<DatabaseEvents>)
 
 }
-@Database(entities = [DatabaseEvents::class], version = 2,exportSchema = false)
+
+@Database(entities = [DatabaseEvents::class], version = 3,exportSchema = false)
 abstract class EventsDatabase: RoomDatabase(){
     abstract val eventsDao: EventsDao
 }
@@ -29,9 +30,9 @@ fun getDatabase(context : Context): EventsDatabase {
     synchronized(EventsDatabase::class.java) {
         if(!::INSTANCE.isInitialized) {
             INSTANCE = Room.databaseBuilder(context.applicationContext,
-                EventsDatabase::class.java,"results")
-                .fallbackToDestructiveMigration()
-                .build()
+                EventsDatabase::class.java,"events")
+                 .fallbackToDestructiveMigration()
+                 .build()
         }
     }
     return INSTANCE

@@ -19,14 +19,14 @@ data class DatabaseEventsContainer(
 
 @Entity
 data class DatabaseEvents(
-    var name:String,
-    var type: String,
-    @PrimaryKey
-    var id: String,
-    var url: String,
+    var name:String
+    //var type: String,
+   // @PrimaryKey
+   // var id: String,
+  //  var url: String,
   //  var dates: Dates,
   //  var promoter: Promoter,
-    var info: String
+  //  var info: String
   //  var priceRanges: List<PriceRange>,
    // var embeddedvenuesContainer: List<Venues>
 )
@@ -35,13 +35,13 @@ data class DatabaseEvents(
 fun List<DatabaseEvents>.asDomainModel():List<Events>{
     return map {
         Events(
-            name = it.name,
-            type = it.type,
-            id = it.id,
-            url = it.url,
+            name = it.name
+          //  type = it.type,
+          //  id = it.id,
+          //  url = it.url,
           //  dates = it.dates,
             //promoter = it.promoter,
-            info = it.info
+           // info = it.info
             //priceRanges = it.priceRanges,
            // embeddedvenuesContainer = it.embeddedvenuesContainer
         )

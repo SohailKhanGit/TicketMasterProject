@@ -4,25 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ticketmasterproject.R
 import com.example.ticketmasterproject.adapter.EventsAdapter
-import com.example.ticketmasterproject.adapter.EventsListener
 import com.example.ticketmasterproject.databinding.FragmentHomeBindingImpl
 import com.example.ticketmasterproject.domain.Events
 
 
 class HomeFragment : Fragment() {
 
-    //private lateinit var homeViewModel: HomeViewModel
+
 
     private var viewModelAdapter: EventsAdapter? = null
     /**LAZY
@@ -61,10 +58,10 @@ class HomeFragment : Fragment() {
 
        binding.setLifecycleOwner (viewLifecycleOwner)
        binding.viewmodel = eventsListViewModel
-
-//       viewModelAdapter = EventsAdapter(EventsListener{
+        viewModelAdapter = EventsAdapter()
+/*//       viewModelAdapter = EventsAdapter(EventsListener{
 //          eventsListViewModel.displayPropertyDetails(it)
-//       })
+//       })*/
          binding.root.findViewById<RecyclerView>(R.id.recycler_view).apply {
             layoutManager = LinearLayoutManager(context)
             adapter = viewModelAdapter
@@ -75,13 +72,13 @@ class HomeFragment : Fragment() {
           if(isNetworkError) onNetworkError()
        })
 
-//       eventsListViewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
-//          if ( null != it ) {
-//             this.findNavController().navigate(Directions.actionFirstFragmentToSecondFragment(it))
-//             // Tell the ViewModel we've made the navigate call to prevent multiple navigation
-//             viewModel.displayPropertyDetailsComplete()
-//          }
-//       })
+///*//       eventsListViewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+////          if ( null != it ) {
+////             this.findNavController().navigate(Directions.actionFirstFragmentToSecondFragment(it))
+////             // Tell the ViewModel we've made the navigate call to prevent multiple navigation
+////             viewModel.displayPropertyDetailsComplete()
+////          }
+////       })*/
 
         setHasOptionsMenu(true)
         return binding.root
@@ -90,9 +87,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        eventsListViewModel.eventsList.observe(viewLifecycleOwner, Observer<List<Events>> { event ->
-            event?.apply {
-                viewModelAdapter?.results =event
+        eventsListViewModel.eventsList.observe(viewLifecycleOwner, Observer<List<Events>> { events ->
+            events?.apply {
+                viewModelAdapter?.events =events
             }
         })
 

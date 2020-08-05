@@ -16,7 +16,7 @@ class EventsListViewModel(application: Application):AndroidViewModel(application
 
     private val eventsRepository = EventsRepository(getDatabase(application))
 
-    val eventsList = eventsRepository.results
+    val eventsList = eventsRepository.events
 
 
     //This is the job for all coroutines started by this ViewModel
