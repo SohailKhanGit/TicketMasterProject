@@ -6,11 +6,13 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ticketmasterproject.R
+import com.example.ticketmasterproject.database.DatabaseEvents
 import com.example.ticketmasterproject.databinding.RowEventsBinding
 import com.example.ticketmasterproject.domain.Events
+import java.util.*
 
 //private val clickListener: EventsListener
-class EventsAdapter():RecyclerView.Adapter<EventsAdapter.EventsViewHolder>(){
+class EventsAdapter(val clickListener: EventsListener):RecyclerView.Adapter<EventsAdapter.EventsViewHolder>(){
 
     var events: List<Events> = emptyList()
     set(value) {
@@ -35,7 +37,7 @@ class EventsAdapter():RecyclerView.Adapter<EventsAdapter.EventsViewHolder>(){
         holder.viewDataBinding.also {
             it.events = events[position]
 
-//            it.resultsCallback = clickListener
+            it.eventsCallback = clickListener
         }
     }
 
@@ -50,6 +52,6 @@ class EventsAdapter():RecyclerView.Adapter<EventsAdapter.EventsViewHolder>(){
     }
 }
 
-//class EventsListener(val clickListener:(id :String) -> Unit){
-//    fun onClick(event: DatabaseEvents) = clickListener(event.id)
-//}
+class EventsListener(val clickListener:(id :Events) -> Unit){
+    fun onClick(event: Events) = clickListener(event)
+}

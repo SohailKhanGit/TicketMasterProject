@@ -1,7 +1,12 @@
 package com.example.ticketmasterproject.network.dataclasses
 
+import androidx.lifecycle.GeneratedAdapter
 import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
+data class EmbeddedVenuesContainer(
+    var venues: List<Venues>
+)
 
 @JsonClass(generateAdapter = true)
 data class Venues (

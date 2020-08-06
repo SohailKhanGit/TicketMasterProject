@@ -6,11 +6,11 @@
         <variable
             name="events"
             type="com.example.ticketmasterproject.domain.Events" />
-
+        <variable
+            name="eventsCallback"
+            type="com.example.ticketmasterproject.adapter.EventsListener" />
     </data>
-<!--            <variable-->
-<!--                name="resultsCallback"-->
-<!--                type="com.example.ticketmasterproject.adapter.EventsListener" />-->
+
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -50,27 +50,30 @@
                 android:text="@{events.name}"
                 android:textAllCaps="false"
                 android:textColor="@color/cardview_dark_background"
+                android:onClick="@{() ->eventsCallback.onClick(events)}"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@+id/right_well"
                 app:layout_constraintStart_toStartOf="@+id/left_well"
                  />
-<!--
 
--->
 
-<!--            <TextView-->
-<!--                android:id="@+id/row_type"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:textColor="@color/cardview_dark_background"-->
-<!--                android:textStyle="bold"-->
-<!--                android:text="@{events.type}"-->
-<!--                app:layout_constraintEnd_toStartOf="@+id/right_well"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/left_well"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/row_name"-->
-<!--                />-->
+
+
+            <TextView
+                android:id="@+id/row_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="@color/cardview_dark_background"
+                android:textStyle="bold"
+                android:text="@{events.type}"
+                app:layout_constraintEnd_toStartOf="@+id/right_well"
+                app:layout_constraintStart_toStartOf="@+id/left_well"
+                app:layout_constraintTop_toBottomOf="@+id/row_name">
+
+            </TextView>
+
 
             <View
                 android:id="@+id/clickableOverlay"

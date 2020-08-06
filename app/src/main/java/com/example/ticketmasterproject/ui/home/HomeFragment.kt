@@ -9,10 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ticketmasterproject.R
 import com.example.ticketmasterproject.adapter.EventsAdapter
+import com.example.ticketmasterproject.adapter.EventsListener
 import com.example.ticketmasterproject.databinding.FragmentHomeBindingImpl
 import com.example.ticketmasterproject.domain.Events
 
@@ -58,10 +60,11 @@ class HomeFragment : Fragment() {
 
        binding.setLifecycleOwner (viewLifecycleOwner)
        binding.viewmodel = eventsListViewModel
-        viewModelAdapter = EventsAdapter()
-/*//       viewModelAdapter = EventsAdapter(EventsListener{
-//          eventsListViewModel.displayPropertyDetails(it)
-//       })*/
+        //viewModelAdapter = EventsAdapter()
+        viewModelAdapter = EventsAdapter(EventsListener{
+            eventsListViewModel.displayPropertyDetails(it)
+       })
+
          binding.root.findViewById<RecyclerView>(R.id.recycler_view).apply {
             layoutManager = LinearLayoutManager(context)
             adapter = viewModelAdapter
@@ -72,13 +75,13 @@ class HomeFragment : Fragment() {
           if(isNetworkError) onNetworkError()
        })
 
-///*//       eventsListViewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
-////          if ( null != it ) {
-////             this.findNavController().navigate(Directions.actionFirstFragmentToSecondFragment(it))
-////             // Tell the ViewModel we've made the navigate call to prevent multiple navigation
-////             viewModel.displayPropertyDetailsComplete()
-////          }
-////       })*/
+       eventsListViewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer {
+          if ( null != it ) {
+             this.findNavController().navigate(HomeFragmentDirections.actionNavHomeToEventDetails2(it))
+             // Tell the ViewModel we've made the navigate call to prevent multiple navigation
+              eventsListViewModel.displayPropertyDetailsComplete()
+          }
+       })
 
         setHasOptionsMenu(true)
         return binding.root

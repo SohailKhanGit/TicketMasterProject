@@ -17,4 +17,7 @@ interface Service {
 //NetworkEventDetails
 //@GET("discovery/v2/events.json")
 //fun getEventObj(@Query(Constants.API_KEY)apikey : String?): Deferred<NetworkEventDetails>
+
+    //get event by id https://app.ticketmaster.com/discovery/v2/events/Z7r9jZ1AeOdbU.json?apikey=RxMCDwe6dk1YATLdXtoeER9K1MsX6ZT8
+
 }

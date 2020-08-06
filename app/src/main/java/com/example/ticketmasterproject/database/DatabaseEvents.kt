@@ -4,6 +4,7 @@ import android.net.Network
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.ticketmasterproject.domain.*
+import com.example.ticketmasterproject.network.dataclasses.*
 import com.example.ticketmasterproject.network.dataclasses.Dates
 import com.example.ticketmasterproject.network.dataclasses.Location
 import com.example.ticketmasterproject.network.dataclasses.PriceRange
@@ -19,31 +20,31 @@ data class DatabaseEventsContainer(
 
 @Entity
 data class DatabaseEvents(
-    var name:String
-    //var type: String,
-   // @PrimaryKey
-   // var id: String,
+    var name:String,
+    var type: String,
+    @PrimaryKey
+    var id: String
   //  var url: String,
   //  var dates: Dates,
   //  var promoter: Promoter,
   //  var info: String
   //  var priceRanges: List<PriceRange>,
-   // var embeddedvenuesContainer: List<Venues>
+   // var _embedded: EmbeddedVenues
 )
 
 
 fun List<DatabaseEvents>.asDomainModel():List<Events>{
     return map {
         Events(
-            name = it.name
-          //  type = it.type,
-          //  id = it.id,
+            name = it.name,
+            type = it.type,
+            id = it.id
           //  url = it.url,
           //  dates = it.dates,
             //promoter = it.promoter,
            // info = it.info
             //priceRanges = it.priceRanges,
-           // embeddedvenuesContainer = it.embeddedvenuesContainer
+            //_embedded = it._embedded
         )
     }
 }
