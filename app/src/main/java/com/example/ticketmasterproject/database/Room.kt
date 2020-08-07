@@ -18,7 +18,7 @@ interface EventsDao{
 
 }
 
-@Database(entities = [DatabaseEvents::class], version = 7,exportSchema = false)
+@Database(entities = [DatabaseEvents::class], version = 8,exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class EventsDatabase: RoomDatabase(){
     abstract val eventsDao: EventsDao

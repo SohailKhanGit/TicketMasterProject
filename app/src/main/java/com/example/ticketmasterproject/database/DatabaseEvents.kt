@@ -24,7 +24,7 @@ data class DatabaseEvents(
     var type: String,
     @PrimaryKey
     var id: String,
-    var images:List<Image>,
+    var images:List<Image>?,
   //  var url: String,
   //  var dates: Dates,
   //  var promoter: Promoter,

@@ -16,7 +16,7 @@ data class NetworkEventDetails(
     var name:String,
     var type: String,
     var id: String,
-    var images:List<Image>,
+    var images:List<Image>?,
    // var url: String,
    // var dates: Dates,
    // var promoter: Promoter,

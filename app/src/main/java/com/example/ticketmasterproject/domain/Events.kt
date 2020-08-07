@@ -9,7 +9,7 @@ data class Events(
     var name:String,
     var type: String,
     var id: String,
-    var images:@RawValue List<Image>,
+    var images:@RawValue List<Image>?,
     var info:String?
    // var url: String,
     //var dates: Dates,
