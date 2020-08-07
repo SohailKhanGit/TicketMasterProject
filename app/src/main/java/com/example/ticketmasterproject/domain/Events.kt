@@ -8,12 +8,15 @@ import kotlinx.android.parcel.RawValue
 data class Events(
     var name:String,
     var type: String,
-    var id: String
+    var id: String,
+    var images:@RawValue List<Image>,
+    var info:String?
    // var url: String,
     //var dates: Dates,
    // var promoter: Promoter,
    // var info: String
     //var priceRanges: List<PriceRange>,
+
 
   //  var _embedded:@RawValue EmbeddedVenues
 ):Parcelable
