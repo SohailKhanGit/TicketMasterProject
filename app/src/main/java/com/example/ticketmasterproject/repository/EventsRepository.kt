@@ -7,17 +7,18 @@ import com.example.ticketmasterproject.database.asDomainModel
 import com.example.ticketmasterproject.domain.Events
 import com.example.ticketmasterproject.network.dataclasses.asDatabaseModel
 import com.example.ticketmasterproject.network.service.Constants
-import com.example.ticketmasterproject.network.service.EventByteNetwork
+
+import com.example.ticketmasterproject.network.service.Service
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-class EventsRepository(private val database:EventsDatabase){
+class EventsRepository(private val api: Service, private val database:EventsDatabase){
 
     suspend fun refreshEvents(){
         withContext(Dispatchers.IO){
             Timber.d("Refresh events database called")
-            val events = EventByteNetwork.eventBytes.getEventObj().await()
+            val events = api.getEventObj().await()
             database.eventsDao.insertAll(events.asDatabaseModel())
         }
     }

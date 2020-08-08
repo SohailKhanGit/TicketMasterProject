@@ -22,6 +22,7 @@ import com.example.ticketmasterproject.domain.Events
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.firebase.iid.FirebaseInstanceId
+import org.koin.android.viewmodel.ext.android.viewModel
 
 
 class HomeFragment : Fragment() {
@@ -32,17 +33,22 @@ class HomeFragment : Fragment() {
 
 
     private var viewModelAdapter: EventsAdapter? = null
+
+
+    private val eventsListViewModel by viewModel<EventsListViewModel>()
+
+
     /**LAZY
      *One way to delay creation of the viewmodel until an appropriate lifecycle method is to use Lazy
      *This requires that viewmodel not be referenced before onActivityCreated, which we do in this fragment
      */
-    private val eventsListViewModel: EventsListViewModel by lazy {
-        val activity = requireNotNull(this.activity) {
-            "You can only access the viewModel after onActivityCreated()"
-        }
-        ViewModelProviders.of(this, EventsListViewModel.Factory(activity.application))
-            .get(EventsListViewModel::class.java)
-    }
+//    private val eventsListViewModel: EventsListViewModel by lazy {
+//        val activity = requireNotNull(this.activity) {
+//            "You can only access the viewModel after onActivityCreated()"
+//        }
+////        ViewModelProviders.of(this, EventsListViewModel.Factory(activity.application))
+////            .get(EventsListViewModel::class.java)
+//    }
 
 
     /**Method for displaying a toast error message for network errors.
@@ -103,8 +109,6 @@ class HomeFragment : Fragment() {
                 viewModelAdapter?.events =events
             }
         })
-
-
     }
 
 

@@ -25,17 +25,17 @@ abstract class EventsDatabase: RoomDatabase(){
 }
 
 
-
-private lateinit var INSTANCE: EventsDatabase
-
-fun getDatabase(context : Context): EventsDatabase {
-    synchronized(EventsDatabase::class.java) {
-        if(!::INSTANCE.isInitialized) {
-            INSTANCE = Room.databaseBuilder(context.applicationContext,
-                EventsDatabase::class.java,"events")
-                 .fallbackToDestructiveMigration()
-                 .build()
-        }
-    }
-    return INSTANCE
-}
+//
+//private lateinit var INSTANCE: EventsDatabase
+//
+//fun getDatabase(context : Context): EventsDatabase {
+//    synchronized(EventsDatabase::class.java) {
+//        if(!::INSTANCE.isInitialized) {
+//            INSTANCE = Room.databaseBuilder(context.applicationContext,
+//                EventsDatabase::class.java,"events")
+//                 .fallbackToDestructiveMigration()
+//                 .build()
+//        }
+//    }
+//    return INSTANCE
+//}
