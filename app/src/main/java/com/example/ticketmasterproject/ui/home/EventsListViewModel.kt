@@ -2,7 +2,7 @@ package com.example.ticketmasterproject.ui.home
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.ticketmasterproject.database.getDatabase
+
 import com.example.ticketmasterproject.domain.Events
 import com.example.ticketmasterproject.repository.EventsRepository
 import kotlinx.coroutines.CoroutineScope
@@ -12,19 +12,19 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 import java.lang.IllegalArgumentException
 
-class EventsListViewModel(application: Application):AndroidViewModel(application) {
+//class EventsListViewModel(application: Application):AndroidViewModel(application) {
+class EventsListViewModel(private val eventsRepository: EventsRepository):ViewModel() {
 
-    private val eventsRepository = EventsRepository(getDatabase(application))
 
     val eventsList = eventsRepository.events
 
-
-    //This is the job for all coroutines started by this ViewModel
+//
+//    //This is the job for all coroutines started by this ViewModel
     private val viewModelJob = SupervisorJob()
-
-    private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-    //Event triggered for network error.
+//
+   private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+//
+//    //Event triggered for network error.
 
     private var _eventNetworkError = MutableLiveData<Boolean>(false)
 
@@ -66,16 +66,16 @@ class EventsListViewModel(application: Application):AndroidViewModel(application
         viewModelJob.cancel()
     }
 
-    class Factory(val app: Application): ViewModelProvider.Factory{
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            if(modelClass.isAssignableFrom(EventsListViewModel::class.java)){
-                @Suppress("UNCHECKED CAST")
-                return  EventsListViewModel(app) as T
-            }
-            throw IllegalArgumentException("Unable to construct viewModel")
-        }
-
-    }
+//    class Factory(val app: Application): ViewModelProvider.Factory{
+//        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+//            if(modelClass.isAssignableFrom(EventsListViewModel::class.java)){
+//                @Suppress("UNCHECKED CAST")
+//                return  EventsListViewModel(app) as T
+//            }
+//            throw IllegalArgumentException("Unable to construct viewModel")
+//        }
+//
+//    }
     //for display data in second fragment
     // LiveData to handle navigation to the selected Event
     private val _navigateToSelectedProperty = MutableLiveData<Events>()
