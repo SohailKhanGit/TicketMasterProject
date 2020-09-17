@@ -20,6 +20,7 @@
             android:id="@+id/eventDetailName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="@{viewModel.selectedProperty.name}"
             android:textAllCaps="false"
@@ -34,6 +35,7 @@
             android:id="@+id/eventDetailType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="@{viewModel.selectedProperty.type}"
             android:textAllCaps="false"
@@ -41,14 +43,42 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/right_well"
             app:layout_constraintStart_toStartOf="@+id/left_well"
-            app:layout_constraintTop_toBottomOf="@+id/eventDetailName">
+            app:layout_constraintTop_toBottomOf="@+id/eventDetailName" />
+
+        <TextView
+            android:id="@+id/event_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@{viewModel.selectedProperty.info}"
+            android:textAllCaps="false"
+            android:textColor="@color/cardview_dark_background"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/right_well"
+            app:layout_constraintStart_toStartOf="@+id/left_well"
+            app:layout_constraintTop_toBottomOf="@+id/event_image">
 
         </TextView>
+
+        <ImageView
+            android:id="@+id/event_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:imageUrl="@{viewModel.selectedProperty.images[0].url}"
+            app:layout_constraintBottom_toTopOf="@+id/event_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventDetailType"></ImageView>
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/mapView2"
             android:layout_width="253dp"
             android:layout_height="227dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -57,12 +87,13 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/eventlocation"
+            app:layout_constraintBottom_toTopOf="@+id/mapView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/eventDetailType" />
+            app:layout_constraintTop_toBottomOf="@+id/event_info" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

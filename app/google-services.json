@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "58899936626",
+    "firebase_url": "https://ticketmasterproject.firebaseio.com",
+    "project_id": "ticketmasterproject",
+    "storage_bucket": "ticketmasterproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58899936626:android:6f2411c33ce8db48a2d9eb",
+        "android_client_info": {
+          "package_name": "com.example.ticketmasterproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58899936626-u3mebqvmv75kgekoacon6698qii14pm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz3CbdOQihSjUs5S-0WayE-GT3hREiz5A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58899936626-u3mebqvmv75kgekoacon6698qii14pm9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

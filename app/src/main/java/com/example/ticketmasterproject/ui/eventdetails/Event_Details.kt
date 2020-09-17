@@ -2,15 +2,18 @@ package com.example.ticketmasterproject.ui.eventdetails
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.ticketmasterproject.R
 import com.example.ticketmasterproject.databinding.FragmentEventDetailsBinding
 import com.example.ticketmasterproject.databinding.FragmentEventDetailsBindingImpl
+import timber.log.Timber
 
 
 /**
@@ -19,6 +22,7 @@ import com.example.ticketmasterproject.databinding.FragmentEventDetailsBindingIm
  * create an instance of this fragment.
  */
 class Event_Details : Fragment() {
+
 
 
     @SuppressLint("UseRequireInsteadOfGet")
@@ -35,8 +39,6 @@ class Event_Details : Fragment() {
         val eventProperty = Event_DetailsArgs.fromBundle(arguments!!).selectedProperty
         val viewModelFactory = EventDetailViewModel.EventDetailViewModelFactory(eventProperty, application)
         binding.viewModel = ViewModelProviders.of(this, viewModelFactory).get(EventDetailViewModel::class.java)
-
-
         return binding.root
         //return inflater.inflate(R.layout.fragment_event__details, container, false)
     }
